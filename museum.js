@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 
 app.set('view engine', 'pug');
 
-//-----------------SESSION STORE------------------
+//-----------------SESSION STORE-------------------
 // app.use(session({
 //   store: new SequelizeStore({
 //     db: sequelize,
