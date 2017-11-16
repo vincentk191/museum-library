@@ -22,16 +22,16 @@ app.use(bodyParser.urlencoded({
 app.set('view engine', 'pug');
 
 //-----------------SESSION STORE-------------------
-// app.use(session({
-//   store: new SequelizeStore({
-//     db: sequelize,
-//     checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
-//     expiration: 24 * 60 * 60 * 1000 // The maximum age (in milliseconds) of a valid session.
-//   }),
-//   secret: "safe",
-//   saveUnitialized: true,
-//   resave: false
-// }))
+app.use(session({
+  store: new SequelizeStore({
+    db: sequelize,
+    checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+    expiration: 24 * 60 * 60 * 1000 // The maximum age (in milliseconds) of a valid session.
+  }),
+  secret: "safe",
+  saveUnitialized: false,
+  resave: false
+}))
 //-----------------TABLES------------------
 const Museum = sequelize.define('museums', {
    name: {
@@ -63,6 +63,8 @@ sequelize.sync();
 //---------------------ROUTES---------------------
 // Index route
 app.get('/', (req, res) => {
+   console.log('Heya');
+   console.log(req.session.user);
    Promise.all([
       Museum.findAll(),
       Item.findAll({
