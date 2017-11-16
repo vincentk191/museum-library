@@ -1,0 +1,25 @@
+doctype html
+html
+   head
+      title
+      link(rel='stylesheet', type='text/css', href='style.css')
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+   body
+      .nav
+         ul
+            li
+               a(href='/') Home
+      h1 Login
+      .slide-show
+         form(action='/login' method='POST')
+            input(type="text", alt=`${first}`, placeholder=`${first}` required)
+            input(type="text", alt=`${second}`, placeholder=`${second}` required)
+            button(type='submit') Login
+         a(href='signup') Sign up
+      .banner
+         table
+      .footer
+      script.
+         $(document).ready(function(){
+         
+         })

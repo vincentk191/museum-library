@@ -1,0 +1,62 @@
+doctype html
+html
+   head
+      title Museum
+      //- meta(name='viewport', content='width=   -width, initial-scale=1')
+      //- meta(charset="utf-8")
+      link(rel='stylesheet', type='text/css', href='/css/bootstrap.min.css')
+      link(rel='stylesheet', type='text/css', href='/css/style.css')
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js')
+      script(src='js/bootstrap.min.js')
+   body.container-fluid
+      ul.row#navigation
+         li.col(style='')
+            a(href='/') Home
+         li.col
+            a(href='/addPost/Piece') Add Art piece
+         li.col
+            a(href='/addPost/Museum') Add Museum
+         li.col
+            a(href='/addPost/Assign') Assign Piece
+      .row
+         .col-10
+            h1 #{file}
+            br
+            .banner
+               h1.display-4 Art Pieces
+               br
+               if alertPieces
+                  .alert.alert-success
+                     button.close(type='button', data-dismiss='alert') ×
+                     <strong>Added Succesfully</strong>
+               else
+               if pieces
+                  each piece in pieces
+                     h4= piece.name
+                     ul
+                        li= piece.info 
+                        if piece.museumId
+                           li(style='font-style: italic') It can be found at 
+                              span(style='font-weight: bold')= piece.museum.dataValues.name
+                        else 
+                        li Registered at 
+                           span= piece.createdAt
+               else 
+               br
+               h1.display-4 Museums
+               br
+               if alertMuseum
+                  .alert.alert-success
+                     button.close(type='button', data-dismiss='alert') ×
+                     <strong>Added Succesfully</strong>
+               else
+               if museums
+                  each museum in museums
+                     h4= museum.name
+                     ul
+                        li= museum.info 
+               else 
+      .footer
